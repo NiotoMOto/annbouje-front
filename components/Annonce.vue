@@ -6,8 +6,7 @@
         <div class="annoucer-name">{{ annonce.creator.username }}</div>
       </aside>
       <aside class="anounce-item_items anounce-details">
-        <div class="anounce-detail-date">{{ annonce.createdAt | formatDate }}</div>
-        <div class="anounce-detail-name">{{ annonce.sport.name }}</div> 
+        <div class="anounce-detail-name">{{ annonce.sport.name }} <span class="anounce-detail-date">{{ annonce.createdAt | formatDate }}</span></div> 
         <div class="anounce-detail-link">   
           <nuxt-link class="anounce-link"        
             :to="path(`/annonces/${annonce._id}`)">
@@ -81,8 +80,8 @@
     }
     .anounce-detail-date {
       color: #41b883;
-      font-size: 15px;
-      float: right;
+      //font-size: 15px;
+      //float: right;
       font-weight: bold;
     }
     .anounce-detail-link {      
