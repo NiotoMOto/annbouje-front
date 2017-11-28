@@ -262,7 +262,7 @@ html {
   padding-left: 16px;
 }
 .cs-font{
-  font-size: 26px;
+  font-size: 20px;
   margin-right: 16px;
   vertical-align: middle;
 }

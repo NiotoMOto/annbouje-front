@@ -74,7 +74,7 @@
     padding-left: 16px;
     .anounce-detail-name {
       color: #41b883;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       margin-bottom: 16px;      
     }
