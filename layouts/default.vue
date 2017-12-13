@@ -10,7 +10,7 @@
       </ul>
       <ul class="menu menu-right">
         <li class="menu-items menu-item-login">
-          <a
+          <a class="cs-user-name"
             v-if="!user"
             href="#"
             v-on:click="toggleLoginModal">
@@ -21,7 +21,7 @@
             :to="path('/profile')">
             {{ user.username }}
           </nuxt-link>
-          <a 
+          <a  class="cs-user-logout"
             v-if="user"
             href="#"
             v-on:click="logout"
@@ -235,6 +235,9 @@ html {
     color: #41b883;
     font-weight: 600;
   }
+  .cs-user-name {
+    font-weight: normal;    
+  }
 }
 
 .cs-font-burger {
@@ -259,7 +262,7 @@ html {
   padding-left: 16px;
 }
 .cs-font{
-  font-size: 26px;
+  font-size: 20px;
   margin-right: 16px;
   vertical-align: middle;
 }

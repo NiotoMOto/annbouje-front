@@ -81,7 +81,7 @@ export default {
 .cs-search {
   background: #fff;
   opacity: .97;
-  padding: 16px;
+  padding: 10px;
   margin-top: 20px;
   width: 90%;
   margin: 0 auto;  
