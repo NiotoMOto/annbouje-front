@@ -1,9 +1,8 @@
 <template>  
   <div>
     <header class="bloc-head">
-      <ul class="menu menu-left">      
-        <li class="menu-items burguer-menu"><i class="cs-font cs-font-burger"></i>Menu</li>
-          
+      <ul class="menu menu-left">
+        <!-- <li class="menu-items burguer-menu"><i class="cs-font cs-font-burger"></i>Menu</li> -->          
         <li class="menu-items cs-logo">            
           <nuxt-link :to="path('/')" class="logo link" href="#" alt="logo"></nuxt-link>
         </li>            
@@ -16,18 +15,23 @@
             v-on:click="toggleLoginModal">
               {{ $t('links.login') }} / create account
           </a>
-          <nuxt-link
+          <a class="toggle-profile"           
             v-if="user"
-            :to="path('/profile')">
+            href="#"
+            v-on:click="toggleProfileModal">
             {{ user.username }}
-          </nuxt-link>
-          <a  class="cs-user-logout"
+            <span>
+              <img class="pict-profil" :src="user.image" alt="photo proile">
+            </span>         
+          </a>
+         
+          <!-- <a  class="cs-user-logout"
             v-if="user"
             href="#"
             v-on:click="logout"
           >
             Déconnecter
-          </a>
+          </a> -->
         </li>      
         <li class="menu-items menu-item-create-annonce">
           <nuxt-link :to="path('/annonces/create')">{{ $t('links.create_annonce') }}</nuxt-link>
@@ -52,6 +56,9 @@
       <Modal :show="showLoginModal" :toggleModal="toggleLoginModal">
         <LoginOrRegister />
       </Modal>
+       <Modal :show="showProfileModal" :toggleModal="toggleProfileModal">
+        <Profile />
+      </Modal>
     </div>
     <section class="cs-footer-wrapper">
       <div class="cs-footer"></div>
@@ -61,17 +68,21 @@
 
 <script>
   import LoginOrRegister from '~/components/LoginOrRegister.vue'
+  import Profile from '~/components/Profile.vue'
   import Logo from '~/components/Logo.vue'
   import Modal from '~/components/Modal.vue'
   import { path } from '~/utils/paths.js'
 
   export default {
     components: {
-      LoginOrRegister, Logo, Modal
+      LoginOrRegister, Logo, Modal, Profile
     },
     computed: {
       showLoginModal () {
         return this.$store.state.ui.modals.login
+      },
+      showProfileModal () {
+        return this.$store.state.ui.modals.profile
       },
       showRegisterModal () {
         return this.$store.state.ui.modals.register
@@ -89,6 +100,9 @@
       },
       toggleLoginModal () {
         this.$store.commit('ui/toggleModal', { modal: 'login' })
+      },
+      toggleProfileModal () {
+        this.$store.commit('ui/toggleModal', { modal: 'profile' })
       },
       toggleRegisterModal () {
         this.$store.commit('ui/toggleModal', { modal: 'register' })
@@ -124,7 +138,7 @@ html {
 }
 .menu-right{
   .menu-items{       
-    width: 50%;
+   // width: 50%;
     text-align: center;
     text-transform: uppercase;
     font-size: 14px;
@@ -172,13 +186,12 @@ html {
 
 .menu-item-create-annonce{
   background:#41b883;
+  width: 220px;
 }
 
-.menu-items{
-    float: left;
-    display: inline-block;
-    width: 20%;
-    padding: 20px 0;
+.menu-items{    
+    display: table-cell;
+    //width: 20%;   
     vertical-align: middle;
     height: 60px;
     position: relative;
@@ -193,7 +206,8 @@ html {
 
   .menu.menu-right {
     float: right;
-    width: 40%;
+    width: 50%;
+    display: table;
     .menu-item-login{
       text-align: right;
       padding-right: 16px;
@@ -304,5 +318,15 @@ html {
   background: #444;
   height: 70px;
   display: inline-block;
+}
+
+.pict-profil {
+    width: 40px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
 }
 </style>

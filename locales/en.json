@@ -17,6 +17,7 @@
         "english": "english",
         "register": "register",
         "login": "login",
+        "profile": "profile",
         "create_annonce": "Create an announcement",
         "logout": "logout",
         "home": "home"
