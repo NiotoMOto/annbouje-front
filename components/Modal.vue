@@ -30,7 +30,7 @@
     right: 300px;
     z-index: 2;
     background: #fff;
-    height: 414px;
+    height: auto;
     width: 400px;
     padding: 16px;
     border: 1px solid #d3d3d3;

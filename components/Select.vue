@@ -29,7 +29,7 @@
 <style lang="scss">
   .cs-select-label {
     display: inline-block;
-    padding: 0 8px;
+    padding: 0 5px;
     width: 28%;
     &:first-child{
       padding-left: 0;
