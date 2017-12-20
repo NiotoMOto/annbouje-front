@@ -41,7 +41,7 @@
     width: 100%;
     padding: 0 10px;
     font-size: 13px;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     border: 1px solid #d3d3d3;      
   }
     

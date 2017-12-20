@@ -1,0 +1,23 @@
+@media (min-width: 320px) and (max-width: 768px){
+   .menu-left{
+    width: 30% !important;   
+  }
+  .menu-right{
+    width: 70% !important;
+  }
+  .menu.menu-right{
+    width: auto;
+  }
+
+  .cs-content-wrapper{
+    width: 100% !important;
+    .cs-main-content{
+      width: 100% !important;
+    }
+    .cs-side-content{
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+  }
+}
+

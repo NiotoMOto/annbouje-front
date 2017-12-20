@@ -3,9 +3,9 @@
         "title": "Welcome"
     },
     "login": {
-        "login": "login",
-        "login_facebook": "login whith facebook account",
-        "login_google": "login with google account"
+        "login": "Login",
+        "login_facebook": "Login whith facebook account",
+        "login_google": "Login with google account"
     },
     "register" : {
         "register": "register",
@@ -16,7 +16,7 @@
         "french": "french",
         "english": "english",
         "register": "register",
-        "login": "login",
+        "login": "Login",
         "profile": "profile",
         "create_annonce": "Create an announcement",
         "logout": "logout",

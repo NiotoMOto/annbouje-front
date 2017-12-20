@@ -42,6 +42,9 @@
        color: #41b883;
        text-decoration: none;
     }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 </style>

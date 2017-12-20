@@ -28,7 +28,8 @@ module.exports = {
   ** Build configuration
   */
   css: [
-    '@/assets/css/main.scss'
+    '@/assets/css/main.scss',
+    '@/assets/css/responsive.scss'
   ],
 
   modules: [

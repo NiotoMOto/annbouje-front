@@ -13,7 +13,7 @@
             v-if="!user"
             href="#"
             v-on:click="toggleLoginModal">
-              {{ $t('links.login') }} / create account
+              {{ $t('links.login') }} / Create account
           </a>
           <a class="toggle-profile"           
             v-if="user"
@@ -130,13 +130,16 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
-.menu-right,
 .menu-left{
   width: 50%;
+  float:left;
+}
+.menu-right{
   float:left;
   display:block;
 }
 .menu-right{
+  width: 50%;
   .menu-items{       
    // width: 50%;
     text-align: center;
@@ -221,7 +224,8 @@ html {
     padding: 10px;
     margin-bottom: 16px;
     width: 100%;
-    display: inline-block;    
+    display: inline-block; 
+    text-transform: none;   
   }
 }
 .auth-google{ 
@@ -232,7 +236,8 @@ html {
     padding: 10px;
     margin-bottom: 16px;
     width: 100%;
-    display: inline-block;    
+    display: inline-block;
+    text-transform: none; 
   }
 }
 
@@ -248,6 +253,7 @@ html {
   a{
     color: #41b883;
     font-weight: 600;
+    text-transform: none;
   }
   .cs-user-name {
     font-weight: normal;    
@@ -261,7 +267,7 @@ html {
 .bloc-head{
     border-bottom: 1px solid #ccc;    
     width: 100%;
-    height: 60px;
+    //height: 60px;
     position: fixed;
     top: 0;
     z-index: 9;
@@ -276,7 +282,7 @@ html {
   padding-left: 16px;
 }
 .cs-font{
-  font-size: 20px;
+  font-size: 26px;
   margin-right: 16px;
   vertical-align: middle;
 }

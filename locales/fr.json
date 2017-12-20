@@ -3,7 +3,7 @@
         "title": "Bienvenue"
     },
     "login": {
-        "login": "login",
+        "login": "Se connecter",
         "login_facebook": "Se conncecter avec son compte facebook",
         "login_google": "Se conncecter avec son compte google"
     },
