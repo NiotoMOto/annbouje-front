@@ -34,7 +34,8 @@
     },
     "buttons": {
         "search": "rechercher",
-        "create_annonce": "Créer l'annonce"
+        "create_annonce": "Créer l'annonce",
+        "add_friends": "Ajout invitations"
     },
     "sports": {
         "COURSE_PIED": "Course à pied",

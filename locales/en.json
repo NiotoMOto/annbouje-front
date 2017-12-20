@@ -35,7 +35,8 @@
     },
     "buttons": {
         "search": "search",
-        "create_annonce": "create annonce"
+        "create_annonce": "create annonce",
+        "add_friends": "Add invitations"
     },
     "sports": {
         "COURSE_PIED": "running",

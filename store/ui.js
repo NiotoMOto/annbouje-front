@@ -2,7 +2,8 @@ export const state = () => ({
   modals: {
     login: false,
     register: false,
-    profile: false
+    profile: false,
+    addFriends: true
   }
 })
 

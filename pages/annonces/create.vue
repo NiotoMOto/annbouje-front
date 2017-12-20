@@ -32,19 +32,24 @@
           :placeholder="$t('inputs.date')"
         />
     </div>
+    <button type="button" class="cta" @click="toggleAddFiends">{{ $t('buttons.add_friends')}}</button>
     <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
   </form>
+   <Modal mode="overlay" :show="showAddFiends" :toggleModal="toggleAddFiends">
+    <h1>TOTO</h1>
+  </Modal>
 </div>
 </template>
 
 <script>
 import vInput from '~/components/Input.vue'
 import vSelect from '~/components/Select.vue'
+import Modal from '~/components/Modal.vue'
 
 export default {
   // middleware: 'auth',
   components: {
-    vInput, vSelect
+    vInput, vSelect, Modal
   },
   data: () => ({
     annonces: [],
@@ -59,11 +64,17 @@ export default {
     },
     sports () {
       return this.$store.state.static.sports
+    },
+    showAddFiends () {
+      return this.$store.state.ui.modals.addFriends
     }
   },
   methods: {
     updateField (field, value) {
       this.$store.commit('forms/updateField', { form: this.form, field, value })
+    },
+    toggleAddFiends () {
+      this.$store.commit('ui/toggleModal', { modal: 'addFriends' })
     },
     async createAnnonce (e) {
       e.preventDefault()

@@ -1,14 +1,30 @@
 <template>
-  <div v-if="show" class="modal">
-    <div class="btn close-btn">
-      <a href="#" v-on:click="toggleModal"><i class="cs-font cs-font-close"></i></a>
+  <div>
+    <div v-if="show" :class="modalClasses" @click="test">
+      <div class="btn close-btn">
+        <a href="#" v-on:click="toggleModal"><i class="cs-font cs-font-close"></i></a>
+      </div>
+      <slot/>
     </div>
-    <slot/>
+    <div class="overlay" v-if="mode === 'overlay' && show" @click="toggleModal"></div>
   </div>
+  
 </template>
 
 <script>
   export default {
+    data: () => ({
+
+    }),
+    computed: {
+      modalClasses () {
+        return {
+          modal: true,
+          'modal-overlay': this.mode === 'overlay',
+          'modal-menu': this.mode === 'menu'
+        }
+      }
+    },
     props: {
       show: {
         type: Boolean,
@@ -18,6 +34,11 @@
       toggleModal: {
         type: Function,
         required: true
+      },
+      mode: {
+        type: String,
+        required: false,
+        default: 'menu'
       }
     }
   }
@@ -25,6 +46,13 @@
 
 <style lang="scss">
   .modal {
+     background: #fff;
+    height: auto;
+    width: 400px;
+    padding: 16px;
+    border: 1px solid #d3d3d3;
+  }
+  .modal-menu {
     position: fixed;
     top: 70px;
     right: 300px;
@@ -34,6 +62,21 @@
     width: 400px;
     padding: 16px;
     border: 1px solid #d3d3d3;
+  }
+
+  .overlay {
+    background: red;
+    opacity: 0.3;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal-overlay {
+     position: fixed;
+      top: 50%;
+      right: 50%;
+      z-index: 99;
   }
 
   .auth-wrapper{
@@ -106,4 +149,5 @@
     text-transform: uppercase;   
     letter-spacing: 1px;    
   }
+  
 </style>

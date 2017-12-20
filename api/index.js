@@ -1,7 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
 const passport = require('passport')
-const config = require('../config')
 
 // Create express router
 const router = express.Router()
