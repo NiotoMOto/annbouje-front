@@ -1,12 +1,23 @@
 <template>  
   <div>
     <header class="bloc-head">
+      <div class="top-head">
+        <span class="lang">
+          <nuxt-link class="Header__Link" v-if="$i18n.locale === 'en'" :to="`/fr` + $route.fullPath" active-class="none" exact>
+              {{ $t('links.french') }}
+            </nuxt-link>
+            <nuxt-link class="Header__Link" v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" active-class="none" exact>
+              {{ $t('links.english') }}
+          </nuxt-link> 
+        </span>
+         
+      </div>
       <ul class="menu menu-left">
         <!-- <li class="menu-items burguer-menu"><i class="cs-font cs-font-burger"></i>Menu</li> -->          
         <li class="menu-items cs-logo">            
           <nuxt-link :to="path('/')" class="logo link" href="#" alt="logo"></nuxt-link>
         </li>            
-      </ul>
+      </ul>      
       <ul class="menu menu-right">
         <li class="menu-items menu-item-login">
           <a class="cs-user-name"
@@ -22,7 +33,7 @@
             {{ user.username }}
             <span>
               <img class="pict-profil" :src="user.image" alt="photo proile">
-            </span>         
+            </span>                  
           </a>
          
           <!-- <a  class="cs-user-logout"
@@ -41,7 +52,8 @@
     <div class="content-app">
       <nuxt/> 
     </div>
-    <div id="content" class="content-bottom">
+    <div id="content" class="content-bottom">     
+
       <!-- <p><nuxt-link :to="path('/')">{{ $t('links.home') }}</nuxt-link></p>
       <p><nuxt-link :to="path('/annonces/create')">{{ $t('links.create_annonce') }}</nuxt-link></p>
       <p><a href="#" v-on:click="toggleLoginModal">{{ $t('links.login') }}</a></p>
@@ -53,6 +65,7 @@
       <nuxt-link class="Header__Link" v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" active-class="none" exact>
         {{ $t('links.english') }}
       </nuxt-link> -->
+
       <Modal :show="showLoginModal" :toggleModal="toggleLoginModal">
         <LoginOrRegister />
       </Modal>
@@ -122,6 +135,22 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+.top-head {  
+  background: #f7f7f7;
+  height: 30px;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  .lang {    
+    position: absolute;
+    right: 32px;
+    
+    a {
+      text-decoration: none;
+      color: #9c9c9c;
+    }    
+  }
 }
 
 *,
