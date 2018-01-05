@@ -17,7 +17,8 @@ export const state = () => ({
   annonce: {
     city: '',
     date: '',
-    sport: ''
+    sport: '',
+    users: []
   }
 })
 
@@ -27,6 +28,9 @@ export const mutations = {
   },
   reset (state, { form }) {
     state[form] = _.mapValues(state[form], '')
+  },
+  addUser (state, user) {
+    state.annonce.users.push(user)
   }
 }
 

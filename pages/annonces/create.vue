@@ -16,7 +16,7 @@
         />
         <v-input
           id="city"
-          :value="city"
+          :value="annonce.city"
           name="city"
           type="city"
           :changeHandler="updateField"
@@ -25,18 +25,32 @@
         <v-input
           class="cs-search_date"
           id="date"
-          :value="city"
+          :value="annonce.date"
           :changeHandler="updateField"
           name="date"
           type="date"
           :placeholder="$t('inputs.date')"
         />
     </div>
-    <button type="button" class="cta" @click="toggleAddFiends">{{ $t('buttons.add_friends')}}</button>
+    <div>
+      <v-input
+        id="add-huber"
+        type="text"
+        :changeHandler="updateSessionUser"
+        :keyupenter="addHuber"
+        :placeholder="$t('buttons.inscrire_session')"
+        :value="huber"
+      />
+      <button type="button" class="cta" @click="addHuber">{{ $t('buttons.inscrire_session')}}</button>
+      <!-- <button type="button" class="cta" @click="toggleAddFiends">{{ $t('buttons.add_hubers')}}</button> -->
+    </div>
+    <div>
+      <div v-for="user in annonce.users">{{ user }}</div>
+    </div>
     <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
   </form>
    <Modal mode="overlay" :show="showAddFiends" :toggleModal="toggleAddFiends">
-    <h1>TOTO</h1>
+    <h1>Inviter huber</h1>
   </Modal>
 </div>
 </template>
@@ -53,14 +67,15 @@ export default {
   },
   data: () => ({
     annonces: [],
-    form: 'annonce'
+    form: 'annonce',
+    huber: ''
   }),
   computed: {
     sport () {
       return this.$store.state.forms.search.sport
     },
-    city () {
-      return this.$store.state.forms.annonce.city
+    annonce () {
+      return this.$store.state.forms.annonce
     },
     sports () {
       return this.$store.state.static.sports
@@ -73,8 +88,18 @@ export default {
     updateField (field, value) {
       this.$store.commit('forms/updateField', { form: this.form, field, value })
     },
+    updateSessionUser (field, value) {
+      this.huber = value
+    },
     toggleAddFiends () {
       this.$store.commit('ui/toggleModal', { modal: 'addFriends' })
+    },
+    addHuber (e) {
+      if (e) {
+        e.preventDefault()
+      }
+      this.$store.commit('forms/addUser', this.huber)
+      this.huber = ''
     },
     async createAnnonce (e) {
       e.preventDefault()

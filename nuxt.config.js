@@ -27,9 +27,9 @@ module.exports = {
   /*
   ** Build configuration
   */
-  css: [
-    '@/assets/css/main.scss'
-  ],
+  // css: [
+  //   '@/assets/css/main.scss'
+  // ],
 
   modules: [
     [

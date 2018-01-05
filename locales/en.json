@@ -36,7 +36,10 @@
     "buttons": {
         "search": "search",
         "create_annonce": "create annonce",
-        "add_friends": "Add invitations"
+        "add_friends": "Add invitations",
+        "add_huber": "Add huber",
+        "add_hubers": "Add hubers",
+        "inscrire_session": "Subscribe to the session"
     },
     "sports": {
         "COURSE_PIED": "running",

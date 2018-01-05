@@ -3,7 +3,7 @@ export const state = () => ({
     login: false,
     register: false,
     profile: false,
-    addFriends: true
+    addFriends: false
   }
 })
 

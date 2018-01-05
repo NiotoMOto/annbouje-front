@@ -6,8 +6,9 @@
       :id="id"
       :value="value"
       :type="type"
-      @input="changeHandler(name, $event.target.value)"
+      @input="change(name, $event.target.value)"
       :placeholder="placeholder"
+      @keyup.enter="keyupenter"
     />
   </label>
 </template>
@@ -15,7 +16,14 @@
 <script>
   export default {
     name: 'v-input',
-    props: ['value', 'changeHandler', 'placeholder', 'label', 'type', 'name', 'id']
+    props: ['value', 'changeHandler', 'placeholder', 'label', 'type', 'name', 'id', 'keyupenter'],
+    methods: {
+      change (name, value) {
+        if (this.changeHandler) {
+          this.changeHandler(name, value)
+        }
+      }
+    }
   }
 </script>
 
