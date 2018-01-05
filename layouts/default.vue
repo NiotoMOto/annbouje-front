@@ -1,19 +1,30 @@
 <template>  
   <div>
     <header class="bloc-head">
+      <div class="top-head">
+        <span class="lang">
+          <nuxt-link class="Header__Link" v-if="$i18n.locale === 'en'" :to="`/fr` + $route.fullPath" active-class="none" exact>
+              {{ $t('links.french') }}
+            </nuxt-link>
+            <nuxt-link class="Header__Link" v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" active-class="none" exact>
+              {{ $t('links.english') }}
+          </nuxt-link> 
+        </span>
+         
+      </div>
       <ul class="menu menu-left">
         <!-- <li class="menu-items burguer-menu"><i class="cs-font cs-font-burger"></i>Menu</li> -->          
         <li class="menu-items cs-logo">            
           <nuxt-link :to="path('/')" class="logo link" href="#" alt="logo"></nuxt-link>
         </li>            
-      </ul>
+      </ul>      
       <ul class="menu menu-right">
         <li class="menu-items menu-item-login">
           <a class="cs-user-name"
             v-if="!user"
             href="#"
             v-on:click="toggleLoginModal">
-              {{ $t('links.login') }} / create account
+              {{ $t('links.login') }} / Create account
           </a>
           <a class="toggle-profile"           
             v-if="user"
@@ -22,7 +33,7 @@
             {{ user.username }}
             <span>
               <img class="pict-profil" :src="user.image" alt="photo proile">
-            </span>         
+            </span>                  
           </a>
          
           <!-- <a  class="cs-user-logout"
@@ -41,7 +52,8 @@
     <div class="content-app">
       <nuxt/> 
     </div>
-    <div id="content" class="content-bottom">
+    <div id="content" class="content-bottom">     
+
       <!-- <p><nuxt-link :to="path('/')">{{ $t('links.home') }}</nuxt-link></p>
       <p><nuxt-link :to="path('/annonces/create')">{{ $t('links.create_annonce') }}</nuxt-link></p>
       <p><a href="#" v-on:click="toggleLoginModal">{{ $t('links.login') }}</a></p>
@@ -53,6 +65,7 @@
       <nuxt-link class="Header__Link" v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" active-class="none" exact>
         {{ $t('links.english') }}
       </nuxt-link> -->
+
       <Modal :show="showLoginModal" :toggleModal="toggleLoginModal">
         <LoginOrRegister />
       </Modal>
@@ -124,19 +137,38 @@ html {
   box-sizing: border-box;
 }
 
+.top-head {  
+  background: #f7f7f7;
+  height: 30px;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  .lang {    
+    position: absolute;
+    right: 32px;
+    
+    a {
+      text-decoration: none;
+      color: #9c9c9c;
+    }    
+  }
+}
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
 }
-.menu-right,
 .menu-left{
   width: 50%;
+  float:left;
+}
+.menu-right{
   float:left;
   display:block;
 }
 .menu-right{
+  width: 50%;
   .menu-items{       
    // width: 50%;
     text-align: center;
@@ -221,7 +253,8 @@ html {
     padding: 10px;
     margin-bottom: 16px;
     width: 100%;
-    display: inline-block;    
+    display: inline-block; 
+    text-transform: none;   
   }
 }
 .auth-google{ 
@@ -232,7 +265,8 @@ html {
     padding: 10px;
     margin-bottom: 16px;
     width: 100%;
-    display: inline-block;    
+    display: inline-block;
+    text-transform: none; 
   }
 }
 
@@ -248,6 +282,7 @@ html {
   a{
     color: #41b883;
     font-weight: 600;
+    text-transform: none;
   }
   .cs-user-name {
     font-weight: normal;    
@@ -261,7 +296,7 @@ html {
 .bloc-head{
     border-bottom: 1px solid #ccc;    
     width: 100%;
-    height: 60px;
+    //height: 60px;
     position: fixed;
     top: 0;
     z-index: 9;
@@ -276,7 +311,7 @@ html {
   padding-left: 16px;
 }
 .cs-font{
-  font-size: 20px;
+  font-size: 26px;
   margin-right: 16px;
   vertical-align: middle;
 }
