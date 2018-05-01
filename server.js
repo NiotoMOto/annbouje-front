@@ -1,7 +1,7 @@
 const { Nuxt, Builder } = require('nuxt')
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 // We instantiate Nuxt.js with the options
 let config = require('./nuxt.config.js')
@@ -21,5 +21,6 @@ if (config.dev) {
 // Listen the server
 app.listen(port, () => {
   console.log('app listen on port ', port)
-  nuxt.showOpen()
+  // console.log('nuxt', nuxt)
+  // nuxt.listen()
 })

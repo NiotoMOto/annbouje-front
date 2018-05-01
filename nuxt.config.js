@@ -55,6 +55,9 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
+    extractCSS: {
+      allChunks: true
+    },
     extend (config, ctx) {
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
