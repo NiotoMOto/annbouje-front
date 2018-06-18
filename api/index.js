@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const passport = require('passport')
+const url = require('url');
 const config = require('../config')
 
 // Create express router
@@ -12,6 +13,12 @@ require('./auth/local')
 // Transform req & res to have the same API as express
 // So we can use res.status() & res.json()
 const app = express()
+
+router.use((req, res, next) => {
+  var theQuery = url.parse(req.url, true).query
+  req.query = theQuery
+  next()
+})
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
