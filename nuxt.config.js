@@ -33,6 +33,7 @@ module.exports = {
   ],
 
   modules: [
+    '@nuxtjs/apollo',
     [
       '@nuxtjs/axios',
       {
@@ -48,6 +49,18 @@ module.exports = {
       }
     ]
   ],
+  apollo: {
+    includeNodeModules: true, // optional, default: false (this includes graphql-tag for node_modules folder)
+    authenticationType: 'Basic', // optional, default: 'Bearer'
+    // required
+    clientConfigs: {
+      default: {
+        // required  
+        httpEndpoint: 'http://localhost:4011/graphql',
+        websocketsOnly: false // Optional
+      },
+    }
+  },
   router: {
     middleware: 'i18n'
   },

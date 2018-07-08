@@ -44,6 +44,7 @@
 <script>
 import SearchComponent from '~/components/Search.vue'
 import Annonce from '~/components/Annonce.vue'
+import gql from 'graphql-tag'
 
 export default {
   components: {
@@ -53,9 +54,12 @@ export default {
     user () {
       return this.$store.state.user
     },
-    annonces () {
+    test () {
       return this.$store.state.annonces
     }
+  },
+  apollo: {
+    annonces: gql`{annonces{ name _id creator{ username } sport{ name } }}`
   },
   methods: {
     refreshAnnonces: function (e) {
