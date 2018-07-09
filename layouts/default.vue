@@ -194,7 +194,7 @@ html {
   height: 100%;
   margin: 0 auto;
   .content-slider {
-    width: 80%;
+    width: 86%;
     margin: 0 auto;
     text-align: center;
     top: calc(50% - 70px);
