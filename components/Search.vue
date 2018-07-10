@@ -83,18 +83,22 @@ export default {
   opacity: .97;
   padding: 10px;
   margin-top: 20px;
-  width: 90%;
-  margin: 0 auto;  
+  width: 80%;
+  margin: 0 auto; 
+  border-radius: 45px; 
 }
+
 .cta {
-  width: 26%;
+  width: calc(27% - 8px);
   margin-left: 8px;
   height: 45px;
   background: #41b883;
   color: #fff;
   text-transform: uppercase;
   border: none;
-  letter-spacing: 1px;  
+  letter-spacing: 1px; 
+   border-radius: 45px; 
+   cursor: pointer;
 }
 
 </style>

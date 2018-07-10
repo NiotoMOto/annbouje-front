@@ -41,5 +41,12 @@
         "FOOT": "football",
         "BASKET": "basket-ball",
         "VELO": "vélo"
+    },
+    "labels" : {
+        "subscribers" : "inscrits",
+        "place": "places"
+    },
+    "button": {
+        "subscribe": "s'inscrire"
     }
 }
