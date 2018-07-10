@@ -26,8 +26,8 @@
 <style lang="scss">
   .modal {
     position: fixed;
-    top: 70px;
-    right: 300px;
+    top: 95px;
+    right: 220px;
     z-index: 2;
     background: #fff;
     height: auto;
@@ -70,20 +70,23 @@
   }
 
   .cs-font-close{
-    margin-right: 0;    
+    margin-right: 0;
+    text-align: center;
+    width: 100%;  
   }
 
   .close-btn {
     position: absolute;
-    right: -52px;
+    right: 3px;
     background: #41b883;    
-    width: 50px;
-    height: 50px;
-    top: -1px;
+    width: 45px;
+    height: 45px;
+    top: 3px;
+    border-radius: 100%;
     a {
       color: #fff;
-      display: inline-block;
-      padding: 12px;
+      text-align: center;
+      line-height: 45px;
     }
   }
 

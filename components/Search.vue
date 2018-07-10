@@ -87,6 +87,7 @@ export default {
   margin: 0 auto; 
   border-radius: 45px; 
 }
+
 .cta {
   width: calc(27% - 8px);
   margin-left: 8px;
