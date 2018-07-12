@@ -364,4 +364,27 @@ html {
     vertical-align: middle;
     margin-left: 8px;
 }
+
+  @media (min-width: 320px) and (max-width: 768px){
+    .menu-left{
+      width: 30%;   
+    }
+    .menu-right{
+      width: 70%;
+    }
+    .menu.menu-right{
+      width: auto;
+    }
+
+    .cs-content-wrapper{
+      width: 100%;
+      .cs-main-content{
+        width: 100%;
+      }
+      .cs-side-content{
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
 </style>

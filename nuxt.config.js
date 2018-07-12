@@ -33,6 +33,7 @@ module.exports = {
   ],
 
   modules: [
+    '@nuxtjs/apollo',
     [
       '@nuxtjs/axios',
       {
@@ -48,6 +49,19 @@ module.exports = {
       }
     ]
   ],
+  apollo: {
+    includeNodeModules: true, // optional, default: false (this includes graphql-tag for node_modules folder)
+    authenticationType: 'Basic', // optional, default: 'Bearer'
+    connectToDevTools: true,
+    // required
+    clientConfigs: {
+      default: {
+        // required  
+        httpEndpoint: 'http://localhost:4011/graphql',
+        websocketsOnly: false // Optional
+      },
+    }
+  },
   router: {
     middleware: 'i18n'
   },
@@ -59,6 +73,26 @@ module.exports = {
       allChunks: true
     },
     extend (config, ctx) {
+      // config.resolve.alias['~queries'] = path.join(
+      //   this.options.srcDir,
+      //   'queries'
+      // )
+      config.module.rules.splice(0, 0, {
+        test: /\.js$/,
+        include: [path.resolve(__dirname, './node_modules/vue2-google-maps')],
+        loader: 'babel-loader'
+      })
+      // if (!ctx.isClient) {
+      //   // This instructs Webpack to include `vue2-google-maps`'s Vue files
+      //   // for server-side rendering
+      //   config.externals.splice(0, 0, function (context, request, callback) {
+      //     if (/^vue2-google-maps($|\/)/.test(request)) {
+      //       callback(null, false)
+      //     } else {
+      //       callback()
+      //     }
+      //   })
+      // }
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -97,7 +131,7 @@ module.exports = {
     // We add /api/login & /api/logout routes
     '~/api'
   ],
-  plugins: ['~/plugins/i18n.js', '~/plugins/format'],
+  plugins: ['~/plugins/i18n.js', '~/plugins/format', '~/plugins/GmapMap'],
   generate: {
     routes: [
       '/', '/login', '/register', '/annonces/create',

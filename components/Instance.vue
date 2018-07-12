@@ -1,7 +1,7 @@
 <template>
     <div class="instance">
       <p>{{ instance.date | formatDate }}</p>
-      <p>{{ instance.subscribers.length }} {{ $t('labels.subscribers') }} / {{ instance.nbPlaces }} {{ $t('labels.place') }} </p>
+      <p>{{ instance.subscribers.length }} {{ $t('labels.subscribers') }} / {{ instance.places }} {{ $t('labels.place') }} </p>
       <StatusInstance :confirmed="instance.confirmed" :cancel="instance.cancel" />
       {{ instance.registered ? 'REGISTERED': '' }}
       <div v-for="subscriber of instance.subscribers" :key="subscriber.username">
