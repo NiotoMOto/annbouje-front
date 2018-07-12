@@ -1,0 +1,38 @@
+
+query annoncesForIndex {
+    annonces {
+        name
+        _id
+        creator {
+            username
+        }
+        sport {
+            name
+        }
+    }
+}
+
+query annonceDetail ($id: String) {
+     annonceById (id: $id) {
+         name
+         sport {
+             name
+         }
+        creator {
+            username
+        }
+         instanceAnnonces {
+             date
+             places
+             subscribers {
+                 username
+             }
+         }
+     }
+}
+
+query instanceAnnonces ($id: String) {
+     instanceAnnonces (annonce: $id) {
+         date
+     }
+}

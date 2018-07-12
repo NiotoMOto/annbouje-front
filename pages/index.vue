@@ -44,7 +44,7 @@
 <script>
 import SearchComponent from '~/components/Search.vue'
 import Annonce from '~/components/Annonce.vue'
-
+import { annoncesForIndex } from '~/queries/annonces.gql'
 export default {
   components: {
     SearchComponent, Annonce
@@ -52,9 +52,12 @@ export default {
   computed: {
     user () {
       return this.$store.state.user
-    },
-    annonces () {
-      return this.$store.state.annonces
+    }
+  },
+  apollo: {
+    annonces: {
+      query: annoncesForIndex,
+      prefetch: true
     }
   },
   methods: {
@@ -63,16 +66,11 @@ export default {
         this.annonces = res.data
       })
     }
-  },
-  asyncData (context) {
-    return context.app.$axios.get('annonces?populate=[{"path":"creator"}, {"path":"sport"}]').then(res => (
-      context.app.store.commit('SET_ANNONCES', res.data)
-    ))
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .search-result_item {
     border: 1px solid blue;
   }
