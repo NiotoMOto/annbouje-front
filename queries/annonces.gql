@@ -36,3 +36,10 @@ query instanceAnnonces ($id: String) {
          date
      }
 }
+
+mutation createAnnonce ( $name: String, $creator: String, $sport: String) {
+    addAnnonce(annonce: { name: $name, creator: $creator, sport: $sport }) {
+        name
+        sport { name }
+    }
+}

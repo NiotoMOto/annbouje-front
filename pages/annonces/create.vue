@@ -23,6 +23,14 @@
           :placeholder="$t('inputs.city')"
         />
         <v-input
+          id="name"
+          :value="name"
+          name="name"
+          type="name"
+          :changeHandler="updateField"
+          :placeholder="$t('inputs.name')"
+        />
+        <v-input
           class="cs-search_date"
           id="date"
           :value="city"
@@ -40,6 +48,7 @@
 <script>
 import vInput from '~/components/Input.vue'
 import vSelect from '~/components/Select.vue'
+import { createAnnonce } from '~/queries/annonces.gql'
 
 export default {
   // middleware: 'auth',
@@ -67,8 +76,12 @@ export default {
     },
     async createAnnonce (e) {
       e.preventDefault()
-      const data = await this.$store.dispatch('createAnnonce', this.$store.state.forms.annonce)
-      this.$router.push({ path: `/annonces/${data._id}` })
+      this.$apollo.mutate({
+        mutation: createAnnonce,
+        variables: this.$store.state.forms.annonce
+      })
+      // const data = await this.$store.dispatch('createAnnonce', this.$store.state.forms.annonce)
+      // this.$router.push({ path: `/annonces/${data._id}` })
     }
   }
 }
