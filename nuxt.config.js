@@ -57,7 +57,7 @@ module.exports = {
     clientConfigs: {
       default: {
         // required  
-        httpEndpoint: 'http://localhost:4011/graphql',
+        httpEndpoint: config.apolloUrl,
         websocketsOnly: false // Optional
       },
     }
