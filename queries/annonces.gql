@@ -79,9 +79,10 @@ query annonceById ($id: String) {
      }
 }
 
-mutation createGroup( $name: String, $creator: String, $sport: String) {
-    addGroup(group: { name: $name, creator: $creator, sport: $sport }) {
+mutation createAnnonce( $name: String, $creator: String, $sport: String) {
+    addAnnonce(annonce: { name: $name, creator: $creator, sport: $sport }) {
         name
+        _id
         sport { name }
     }
 }

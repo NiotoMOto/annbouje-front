@@ -68,6 +68,9 @@ export default {
     },
     sports () {
       return this.$store.state.static.sports
+    },
+    name () {
+      return this.$store.state.forms.annonce.name
     }
   },
   methods: {
@@ -76,10 +79,14 @@ export default {
     },
     async createAnnonce (e) {
       e.preventDefault()
-      this.$apollo.mutate({
+      const annonce = await this.$apollo.mutate({
         mutation: createAnnonce,
-        variables: this.$store.state.forms.annonce
+        variables: { ...this.$store.state.forms.annonce, creator: this.$store.state.user._id }
       })
+      if (annonce.data.addAnnonce._id) {
+        this.$router.push(annonce.data.addAnnonce._id)
+      }
+      console.log(annonce)
       // const data = await this.$store.dispatch('createAnnonce', this.$store.state.forms.annonce)
       // this.$router.push({ path: `/annonces/${data._id}` })
     }
