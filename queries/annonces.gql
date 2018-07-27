@@ -1,5 +1,5 @@
 
-query annoncesForIndex {
+query groupsForIndex {
     annonces {
         name
         _id
@@ -9,10 +9,30 @@ query annoncesForIndex {
         sport {
             name
         }
+        annonces {
+            _id
+        }
     }
 }
 
-query annonceDetail ($id: String) {
+query annonceForIndex {
+    annonces {
+        date
+        _id
+        name
+        creator {
+            username
+        }
+        sport { 
+            name
+        }
+        group {
+            name
+        }
+    }
+}
+
+query groupDetail ($id: String) {
      annonceById (id: $id) {
          name
          sport {
@@ -21,7 +41,7 @@ query annonceDetail ($id: String) {
         creator {
             username
         }
-         instanceAnnonces {
+         annonces {
              date
              places
              subscribers {
@@ -31,8 +51,37 @@ query annonceDetail ($id: String) {
      }
 }
 
-query instanceAnnonces ($id: String) {
-     instanceAnnonces (annonce: $id) {
-         date
+query groups ($id: String) {
+     annonces (annonce: $id) {
+        date
+        places
+        subscribers {
+            username
+        }
+        annonce {
+            sport {
+                name
+            }
+        }
      }
+}
+
+query annonceById ($id: String) {
+     annonce (id: $id) {
+        date
+        places
+        subscribers {
+            username
+        }
+        sport {
+            name
+        }
+     }
+}
+
+mutation createGroup( $name: String, $creator: String, $sport: String) {
+    addGroup(group: { name: $name, creator: $creator, sport: $sport }) {
+        name
+        sport { name }
+    }
 }

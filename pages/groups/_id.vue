@@ -3,8 +3,8 @@
       <aside class="cs-content cs-main-content">  
         <span class="last-post"></span>   
         <div>         
-          <!-- <h1>{{ annonce.annonce.name }} - {{ annonce.name }}</h1>
-          <h2>{{ annonce.annonce.username }}</h2> -->
+          <h1>{{ annonceById.sport.name }} - {{ annonceById.name }}</h1>
+          <h2>{{ annonceById.creator.username }}</h2>
         </div>
         <div>
           <GmapMap
@@ -19,7 +19,7 @@
           </GmapMap>
         </div>
         <div></div>
-        <Annonce :annonce="annonce" :key="annonce._id" />
+        <Instance :instance="instance" v-for="instance in annonceById.instanceAnnonces" :key="instance._id" />
       </aside>
     </div>
    
@@ -27,23 +27,26 @@
 
 <script>
   import Annonce from '~/components/Annonce.vue'
-  import { annonceById } from '~/queries/annonces.gql'
+  import { annonceDetail } from '~/queries/annonces.gql'
 
   export default {
     data () {
       return {
-        annonce: {
+        annonceById: {
+          sport: {},
+          creator: {},
+          instanceAnnonces: []
         },
         loading: 0
       }
     },
     async asyncData ({ app }) {
-      const annonce = await app.apolloProvider.defaultClient.query(
-        { query: annonceById, variables: { id: app.context.params.id } })
+      const annonceById = await app.apolloProvider.defaultClient.query(
+        { query: annonceDetail, variables: { id: app.context.params.id } })
         .then(({ data }) => (
-          data && data.annonce
+          data && data.annonceById
         ))
-      return { annonce }
+      return { annonceById }
     },
     components: {
       Annonce

@@ -16,7 +16,7 @@
       <aside class="cs-content cs-main-content">  
         <span class="last-post">les derniers posts</span>   
         <div class="search-result">
-          <Annonce :annonce="annonce" v-for="annonce in annonces" :key="annonce._id" />
+          <AnnonceItemList :annonce="annonce" v-for="annonce in annonces" :key="annonce._id" />
         </div>
       </aside>
 
@@ -43,11 +43,11 @@
 
 <script>
 import SearchComponent from '~/components/Search.vue'
-import Annonce from '~/components/Annonce.vue'
-import { annoncesForIndex } from '~/queries/annonces.gql'
+import AnnonceItemList from '~/components/AnnonceItemList.vue'
+import { annonceForIndex } from '~/queries/annonces.gql'
 export default {
   components: {
-    SearchComponent, Annonce
+    SearchComponent, AnnonceItemList
   },
   computed: {
     user () {
@@ -56,7 +56,7 @@ export default {
   },
   apollo: {
     annonces: {
-      query: annoncesForIndex,
+      query: annonceForIndex,
       prefetch: true
     }
   },
