@@ -92,7 +92,10 @@ module.exports = {
       // )
       config.module.rules.splice(0, 0, {
         test: /\.js$/,
-        include: [path.resolve(__dirname, './node_modules/vue2-google-maps')],
+        include: [
+          path.resolve(__dirname, './node_modules/vue2-google-maps'),
+          path.resolve(__dirname, './node_modules/vuetify-google-autocomplete/lib')
+        ],
         loader: 'babel-loader'
       })
       // if (!ctx.isClient) {
@@ -144,7 +147,13 @@ module.exports = {
     // We add /api/login & /api/logout routes
     '~/api'
   ],
-  plugins: ['~/plugins/i18n.js', '~/plugins/format', '~/plugins/GmapMap', '~/plugins/vuetifyDateTimePicker'],
+  plugins: [
+    '~/plugins/i18n.js',
+    '~/plugins/format',
+    '~/plugins/GmapMap',
+    '~/plugins/vuetifyDateTimePicker',
+    '~/plugins/googleAutoComplete'
+  ],
   generate: {
     routes: [
       '/', '/login', '/register', '/annonces/create',

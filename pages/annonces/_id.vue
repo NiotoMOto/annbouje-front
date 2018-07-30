@@ -10,16 +10,16 @@
         <div class="map-wrapper">
           <p class="localisation-bloc">
            <span class="loc-label">Les coordonnées :</span>  
-           <span class="loc-address">2 rue de Paris 93564 Aubervilliers</span> 
+           <span class="loc-address">{{formatAddress}}</span> 
           </p>
           <GmapMap
-            :center="{lat:48.0300024, lng:2.739625}"
+            :center="{lat: annonce.address.latitude, lng: annonce.address.longitude}"
             :zoom="14"
             map-type-id="terrain"
             style="width: 100%; height: 300px"
           >
             <GmapMarker
-              :position="{lat:48.0300024, lng:2.739625}"
+              :position="{lat: annonce.address.latitude, lng: annonce.address.longitude}"
             />
           </GmapMap>
         </div>        
@@ -38,6 +38,11 @@
         annonce: {
         },
         loading: 0
+      }
+    },
+    computed: {
+      formatAddress () {
+        return `${this.annonce.address.streetNumber} ${this.annonce.address.route} ${this.annonce.address.postalCode} ${this.annonce.address.locality} `
       }
     },
     async asyncData ({ app }) {

@@ -45,6 +45,13 @@
           :input="updateField"
           >
         </v-datetime-picker>
+        <vuetify-google-autocomplete
+          id="map"
+          append-icon="search"
+          placeholder="Start typing"
+          v-on:placechanged="getAddressData"
+        >
+      </vuetify-google-autocomplete>
     </div>
     <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
   </form>
@@ -90,6 +97,22 @@ export default {
     }
   },
   methods: {
+    getAddressData: function (data) {
+      if (data) {
+        const address = {
+          streetNumber: data.street_number,
+          route: data.route,
+          locality: data.locality,
+          country: data.country,
+          postalCode: data.postal_code,
+          latitude: data.latitude,
+          longitude: data.longitude,
+          name: data.name,
+          placeId: data.place_id
+        }
+        this.updateField('address', address)
+      }
+    },
     updateField (field, value) {
       this.$store.commit('forms/updateField', { form: this.form, field, value })
     },
@@ -107,9 +130,15 @@ export default {
     },
     async createAnnonce (e) {
       e.preventDefault()
+      const { address, ...annonceValues } = this.$store.state.forms.annonce
+      console.log(address)
       const annonce = await this.$apollo.mutate({
         mutation: createAnnonce,
-        variables: { ...this.$store.state.forms.annonce, creator: this.$store.state.user._id }
+        variables: {
+          ...address,
+          ...annonceValues,
+          creator: this.$store.state.user._id
+        }
       })
       if (annonce.data.addAnnonce._id) {
         this.$router.push(annonce.data.addAnnonce._id)
