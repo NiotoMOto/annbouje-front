@@ -5053,6 +5053,10 @@ moment@^2.19.2:
   version "2.22.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
 
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
+
 morgan@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
@@ -8321,11 +8325,23 @@ vue2-google-maps@^0.9.7:
     babel-runtime "^5.8.0"
     marker-clusterer-plus "^2.1.4"
 
-vue@^2.5.13:
+vue@^2.3.0, vue@^2.5.13:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
 
-vuetify@^1.0.17:
+vuetify-datetime-picker@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vuetify-datetime-picker/-/vuetify-datetime-picker-1.0.3.tgz#33eb48eee153f88863ce6708da940dbe6f989d5b"
+  dependencies:
+    moment "^2.22.2"
+    vue "^2.3.0"
+    vuetify "^1.1.4"
+
+vuetify-google-autocomplete@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/vuetify-google-autocomplete/-/vuetify-google-autocomplete-2.0.0-beta.4.tgz#2c35f0c96c0724fc66038b93e24e68eb0236da6e"
+
+vuetify@^1.0.17, vuetify@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.1.8.tgz#3aef842ddc9b7ec348e7ce273a24f2f8ebb1cea9"
 

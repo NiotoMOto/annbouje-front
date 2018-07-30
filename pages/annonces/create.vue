@@ -39,6 +39,12 @@
           type="date"
           :placeholder="$t('inputs.date')"
         />
+        <v-datetime-picker
+          label="Select Datetime"
+          v-model="datetime"
+          :input="updateField"
+          >
+        </v-datetime-picker>
     </div>
     <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
   </form>
@@ -48,16 +54,20 @@
 <script>
 import vInput from '~/components/Input.vue'
 import vSelect from '~/components/Select.vue'
+import DateTimePicker from '~/components/DateTimePicker.vue'
 import { createAnnonce } from '~/queries/annonces.gql'
 
 export default {
   // middleware: 'auth',
   components: {
-    vInput, vSelect
+    vInput, vSelect, DateTimePicker
   },
   data: () => ({
+    date: null,
+    datetime: null,
     annonces: [],
-    form: 'annonce'
+    form: 'annonce',
+    dateFormatted: null
   }),
   computed: {
     sport () {
@@ -73,9 +83,27 @@ export default {
       return this.$store.state.forms.annonce.name
     }
   },
+  watch: {
+    datetime: function (newDate) {
+      console.log(this)
+      this.updateField('date', newDate)
+    }
+  },
   methods: {
     updateField (field, value) {
       this.$store.commit('forms/updateField', { form: this.form, field, value })
+    },
+    formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${month}/${day}/${year}`
+    },
+    parseDate (date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
     async createAnnonce (e) {
       e.preventDefault()

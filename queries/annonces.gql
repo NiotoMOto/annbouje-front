@@ -79,10 +79,19 @@ query annonceById ($id: String) {
      }
 }
 
-mutation createAnnonce( $name: String, $creator: String, $sport: String) {
-    addAnnonce(annonce: { name: $name, creator: $creator, sport: $sport }) {
+mutation createAnnonce( $name: String, $creator: String, $sport: String, $date: Date) {
+    addAnnonce(annonce: { name: $name, creator: $creator, sport: $sport, date: $date }) {
         name
         _id
         sport { name }
+    }
+}
+
+query userAutoComplete ($userContain: String) {
+    searchUser(userContain: $userContain) {
+        _id
+        lastName
+        firstName
+        username
     }
 }

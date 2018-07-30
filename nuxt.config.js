@@ -33,8 +33,8 @@ module.exports = {
   ],
 
   modules: [
-    '@nuxtjs/apollo',
     '@nuxtjs/vuetify',
+    '@nuxtjs/apollo',
     [
       '@nuxtjs/axios',
       {
@@ -144,7 +144,7 @@ module.exports = {
     // We add /api/login & /api/logout routes
     '~/api'
   ],
-  plugins: ['~/plugins/i18n.js', '~/plugins/format', '~/plugins/GmapMap'],
+  plugins: ['~/plugins/i18n.js', '~/plugins/format', '~/plugins/GmapMap', '~/plugins/vuetifyDateTimePicker'],
   generate: {
     routes: [
       '/', '/login', '/register', '/annonces/create',
