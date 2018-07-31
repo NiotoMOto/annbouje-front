@@ -15,14 +15,6 @@
           :placeholder="$t('inputs.sport')"
         />
         <v-input
-          id="city"
-          :value="city"
-          name="city"
-          type="city"
-          :changeHandler="updateField"
-          :placeholder="$t('inputs.city')"
-        />
-        <v-input
           id="name"
           :value="name"
           name="name"
@@ -31,27 +23,26 @@
           :placeholder="$t('inputs.name')"
         />
         <v-input
-          class="cs-search_date"
-          id="date"
-          :value="city"
+          id="name"
+          :value="name"
+          name="name"
+          type="name"
           :changeHandler="updateField"
-          name="date"
-          type="date"
-          :placeholder="$t('inputs.date')"
+          :placeholder="$t('inputs.nbPlaces')"
         />
         <v-datetime-picker
-          label="Select Datetime"
+          :label="$t('inputs.date')"
           v-model="datetime"
           :input="updateField"
           >
         </v-datetime-picker>
         <vuetify-google-autocomplete
-          id="map"
+          id="search"
           append-icon="search"
           placeholder="Start typing"
           v-on:placechanged="getAddressData"
         >
-      </vuetify-google-autocomplete>
+        </vuetify-google-autocomplete>
     </div>
     <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
   </form>

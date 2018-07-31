@@ -31,7 +31,8 @@
         "login": "votre identifiant",
         "sport": "sport",
         "city": "ville",
-        "date": "date"
+        "date": "date",
+        "nbPlaces": "nombre de places"
     },
     "buttons": {
         "search": "rechercher",
