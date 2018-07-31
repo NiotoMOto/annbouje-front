@@ -33,6 +33,7 @@ module.exports = {
   ],
 
   modules: [
+    '@nuxtjs/vuetify',
     '@nuxtjs/apollo',
     [
       '@nuxtjs/axios',
@@ -59,7 +60,19 @@ module.exports = {
         // required  
         httpEndpoint: config.apolloUrl,
         websocketsOnly: false // Optional
-      },
+      }
+    }
+  },
+  vuetify: {
+    // Vuetify options
+    theme: {
+      primary: '#1976D2',
+      secondary: '#424242',
+      accent: '#82B1FF',
+      error: '#FF5252',
+      info: '#2196F3',
+      success: '#4CAF50',
+      warning: '#FFC107'
     }
   },
   router: {
@@ -79,7 +92,10 @@ module.exports = {
       // )
       config.module.rules.splice(0, 0, {
         test: /\.js$/,
-        include: [path.resolve(__dirname, './node_modules/vue2-google-maps')],
+        include: [
+          path.resolve(__dirname, './node_modules/vue2-google-maps'),
+          path.resolve(__dirname, './node_modules/vuetify-google-autocomplete/lib')
+        ],
         loader: 'babel-loader'
       })
       // if (!ctx.isClient) {
@@ -131,7 +147,13 @@ module.exports = {
     // We add /api/login & /api/logout routes
     '~/api'
   ],
-  plugins: ['~/plugins/i18n.js', '~/plugins/format', '~/plugins/GmapMap'],
+  plugins: [
+    '~/plugins/i18n.js',
+    '~/plugins/format',
+    '~/plugins/GmapMap',
+    '~/plugins/vuetifyDateTimePicker',
+    '~/plugins/googleAutoComplete'
+  ],
   generate: {
     routes: [
       '/', '/login', '/register', '/annonces/create',

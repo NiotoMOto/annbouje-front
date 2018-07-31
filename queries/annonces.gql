@@ -76,13 +76,55 @@ query annonceById ($id: String) {
         sport {
             name
         }
+        address {
+            latitude
+            longitude
+            streetNumber
+            route
+            locality
+            postalCode
+        }
      }
 }
 
-mutation createAnnonce( $name: String, $creator: String, $sport: String) {
-    addAnnonce(annonce: { name: $name, creator: $creator, sport: $sport }) {
-        name
+mutation createAnnonce(
+    $name: String,
+    $creator: String,
+    $sport: String,
+    $date: Date,
+    $streetNumber: String,
+    $route: String,
+    $locality: String,
+    $country: String,
+    $postalCode: String,
+    $latitude: Float,
+    $longitude: Float,
+    $addressName: String,
+    $placeId: String
+) {
+    addAnnonce(
+        annonce: { name: $name, creator: $creator, sport: $sport, date: $date }
+        address: {
+            streetNumber: $streetNumber,
+            route: $route,
+            locality: $locality,
+            country: $country,
+            postalCode: $postalCode,
+            latitude: $latitude,
+            longitude: $longitude,
+            addressName: $addressName,
+            placeId: $placeId
+        }
+    ) {
         _id
-        sport { name }
+    }
+}
+
+query userAutoComplete ($userContain: String) {
+    searchUser(userContain: $userContain) {
+        _id
+        lastName
+        firstName
+        username
     }
 }

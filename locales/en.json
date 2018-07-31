@@ -32,7 +32,8 @@
         "login": "your ID",
         "sport": "sport",
         "city": "city",
-        "date": "date"
+        "date": "date",
+        "nbPlaces": "number of places"
     },
     "buttons": {
         "search": "search",

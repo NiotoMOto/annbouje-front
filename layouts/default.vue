@@ -1,5 +1,5 @@
 <template>  
-  <div>
+  <v-app data-app>
     <header class="bloc-head">
       <div class="top-head">
         <span class="lang">
@@ -76,7 +76,7 @@
     <section class="cs-footer-wrapper">
       <div class="cs-footer"></div>
     </section>  
-  </div>
+  </v-app>
 </template>
 
 <script>

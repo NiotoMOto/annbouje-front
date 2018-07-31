@@ -18,6 +18,10 @@
         <div class="search-result">
           <AnnonceItemList :annonce="annonce" v-for="annonce in annonces" :key="annonce._id" />
         </div>
+          <v-btn color="success">Success</v-btn>
+          <v-btn color="error">Error</v-btn>
+          <v-btn color="warning">Warning</v-btn>
+          <v-btn color="info">Info</v-btn>
       </aside>
 
       <aside class="cs-content cs-side-content">
