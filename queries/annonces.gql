@@ -100,10 +100,11 @@ mutation createAnnonce(
     $latitude: Float,
     $longitude: Float,
     $addressName: String,
-    $placeId: String
+    $placeId: String,
+    $places: Int
 ) {
     addAnnonce(
-        annonce: { name: $name, creator: $creator, sport: $sport, date: $date }
+        annonce: { name: $name, creator: $creator, sport: $sport, date: $date, places: $places }
         address: {
             streetNumber: $streetNumber,
             route: $route,

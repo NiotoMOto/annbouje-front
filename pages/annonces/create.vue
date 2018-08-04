@@ -23,10 +23,10 @@
           :placeholder="$t('inputs.name')"
         />
         <v-input
-          id="name"
+          id="places"
           :value="name"
-          name="name"
-          type="name"
+          name="places"
+          type="number"
           :changeHandler="updateField"
           :placeholder="$t('inputs.nbPlaces')"
         />
@@ -83,7 +83,6 @@ export default {
   },
   watch: {
     datetime: function (newDate) {
-      console.log(this)
       this.updateField('date', newDate)
     }
   },
@@ -122,7 +121,6 @@ export default {
     async createAnnonce (e) {
       e.preventDefault()
       const { address, ...annonceValues } = this.$store.state.forms.annonce
-      console.log(address)
       const annonce = await this.$apollo.mutate({
         mutation: createAnnonce,
         variables: {
@@ -134,9 +132,6 @@ export default {
       if (annonce.data.addAnnonce._id) {
         this.$router.push(annonce.data.addAnnonce._id)
       }
-      console.log(annonce)
-      // const data = await this.$store.dispatch('createAnnonce', this.$store.state.forms.annonce)
-      // this.$router.push({ path: `/annonces/${data._id}` })
     }
   }
 }
