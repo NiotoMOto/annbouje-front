@@ -6,7 +6,7 @@
           <h1>{{ annonce.annonce.name }} - {{ annonce.name }}</h1>
           <h2>{{ annonce.annonce.username }}</h2>
         </div> -->
-        <Annonce :annonce="annonce" :key="annonce._id" />
+        <Annonce :annonce="annonce" :key="annonce._id" :subscribe="subscribe" />
         <div class="map-wrapper">
           <p class="localisation-bloc">
            <span class="loc-label">Les coordonnées :</span>  
@@ -30,7 +30,7 @@
 
 <script>
   import Annonce from '~/components/Annonce.vue'
-  import { annonceById } from '~/queries/annonces.gql'
+  import { annonceById, subscribe } from '~/queries/annonces.gql'
 
   export default {
     data () {
@@ -52,6 +52,26 @@
           data && data.annonce
         ))
       return { annonce }
+    },
+    methods: {
+      async subscribe (e) {
+        e.preventDefault()
+        const result = await this.$apollo.mutate({
+          mutation: subscribe,
+          variables: {
+            annonceId: this.annonce._id,
+            userId: this.$store.state.user._id
+          }
+        })
+        if (result) {
+          const annonce = await this.$apolloProvider.defaultClient.query(
+            { query: annonceById, variables: { id: this.annonce._id } })
+            .then(({ data }) => (
+              data && data.annonce
+            ))
+          this.annonce = annonce
+        }
+      }
     },
     components: {
       Annonce

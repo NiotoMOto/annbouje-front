@@ -66,10 +66,21 @@ query groups ($id: String) {
      }
 }
 
+mutation subscribe($userId: String, $annonceId: String) {
+    subscribe(subscribe: { annonceId: $annonceId, userId: $userId }) {
+        _id
+        subscribers {
+            username
+        }
+    }
+}
+
 query annonceById ($id: String) {
      annonce (id: $id) {
+         _id
         date
         places
+        name
         subscribers {
             username
         }

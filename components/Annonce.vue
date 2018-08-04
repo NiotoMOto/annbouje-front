@@ -1,6 +1,6 @@
 <template>
     <div class="annonce-details">
-      <p class="ann-title">Urban soccer - Porte d'Aubervilliers</p>
+      <p class="ann-title">{{ annonce.name }}</p>
       <p class="ann-date">Prévu pour le : <span class="date">{{ annonce.date | formatDate }}</span></p>
       <p class="ann-places-available">
         <!-- {{ $t('labels.subscribers') }} -->
@@ -8,7 +8,7 @@
       </p>
       <div class="ann-suscribers">Voir la liste des inscrits
         {{ annonce.registered ? 'REGISTERED': '' }}
-        <p v-for="subscriber of annonce.subscribers" :key="subscriber.username">
+        <p v-for="subscriber of annonce.subscribers" :key="subscriber._id">
           {{ subscriber.username }}
         </p>
       </div>
@@ -16,15 +16,18 @@
         je m'inscris
       </button> -->
       <!-- <StatusInstance :confirmed="annonce.confirmed" :cancel="annonce.cancel" /> -->     
-      <div v-if="!annonce.registered"><button>{{ $t('button.subscribe') }}</button></div>
+      <div v-if="!annonce.registered">
+        <button v-on:click="subscribe">{{ $t('button.subscribe') }}</button>
+      </div>
     </div>
 </template>
 
 <script>
   import StatusInstance from '~/components/StatusInstance.vue'
+
   export default {
     components: {StatusInstance},
-    props: ['annonce']
+    props: ['annonce', 'subscribe']
   }
 </script>
 
