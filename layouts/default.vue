@@ -345,7 +345,7 @@ html {
   background-color: #35495e;
 }
 .content-app {
-  margin-top: 120px;
+  margin-top: 106px;
 }
 
 .cs-footer-wrapper{

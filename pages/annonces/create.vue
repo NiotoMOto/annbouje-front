@@ -1,51 +1,52 @@
 <template>
 <div class="cs-content-wrapper">
-  <form v-on:submit.prevent="createAnnonce">
-      <div class="cs-content-wrapper">
-        <v-select
-          class="cs-search_sport"
-          id="sport"
-          :value="sport"
-          :items="sports"
-          attrLabel="name"
-          attrValue="_id"
-          :changeHandler="updateField"
-          name="sport"
-          type="text"
-          :placeholder="$t('inputs.sport')"
-        />
-        <v-input
-          id="name"
-          :value="name"
-          name="name"
-          type="name"
-          :changeHandler="updateField"
-          :placeholder="$t('inputs.name')"
-        />
-        <v-input
-          id="places"
-          :value="name"
-          name="places"
-          type="number"
-          :changeHandler="updateField"
-          :placeholder="$t('inputs.nbPlaces')"
-        />
-        <v-datetime-picker
-          :label="$t('inputs.date')"
-          v-model="datetime"
-          :input="updateField"
+  <h2 class="cs-title-bloc"> Créer votre annonce</h2>
+  <aside class="cs-create-form">    
+    <form v-on:submit.prevent="createAnnonce">       
+          <v-select
+            class="cs-search_sport"
+            id="sport"
+            :value="sport"
+            :items="sports"
+            attrLabel="name"
+            attrValue="_id"
+            :changeHandler="updateField"
+            name="sport"
+            type="text"
+            :placeholder="$t('inputs.sport')"
+          />
+          <v-input
+            id="name"
+            :value="name"
+            name="name"
+            type="name"
+            :changeHandler="updateField"
+            :placeholder="$t('inputs.name')"
+          />
+          <v-input
+            id="places"
+            :value="name"
+            name="places"
+            type="number"
+            :changeHandler="updateField"
+            :placeholder="$t('inputs.nbPlaces')"
+          />
+          <v-datetime-picker
+            :label="$t('inputs.date')"
+            v-model="datetime"
+            :input="updateField"
+            >
+          </v-datetime-picker>
+          <vuetify-google-autocomplete
+            id="search"
+            append-icon="search"
+            placeholder="Start typing"
+            v-on:placechanged="getAddressData"
           >
-        </v-datetime-picker>
-        <vuetify-google-autocomplete
-          id="search"
-          append-icon="search"
-          placeholder="Start typing"
-          v-on:placechanged="getAddressData"
-        >
-        </vuetify-google-autocomplete>
-    </div>
-    <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
-  </form>
+          </vuetify-google-autocomplete>      
+      <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
+    </form>
+  </aside>
 </div>
 </template>
 
@@ -136,3 +137,44 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+  .cs-content-wrapper {
+    width: 80%;
+    margin: 0 auto;
+     .cs-title-bloc {
+      margin-bottom: 16px;
+      color: #41b883;
+    }
+  }
+  .cs-create-form {
+    width: 60%;
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 32px;    
+    .cs-select-label,
+    .cs-input-label {     
+      margin-bottom: 16px;
+      width: 100%;
+    } 
+    .cta {
+      display: block;
+      width: 60%;
+      margin: 0 auto;
+      border-radius: 45px;
+    }
+    input,
+    select,
+    textarea {
+      outline: none!important;
+      background-color: #fff!important;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none!important; 
+      background-color: #fff!important; 
+    }    
+  }
+</style>
