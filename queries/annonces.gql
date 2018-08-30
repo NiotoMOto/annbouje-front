@@ -140,3 +140,10 @@ query userAutoComplete ($userContain: String) {
         username
     }
 }
+
+query sportAutoComplete($sportContain: String) {
+    searchSport(sportContain: $sportContain) {
+        _id
+        name
+    }
+}
