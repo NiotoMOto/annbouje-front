@@ -3,18 +3,7 @@
   <h2 class="cs-title-bloc"> Créer votre annonce</h2>
   <aside class="cs-create-form">    
     <form v-on:submit.prevent="createAnnonce">       
-          <v-select
-            class="cs-search_sport"
-            id="sport"
-            :value="sport"
-            :items="sports"
-            attrLabel="name"
-            attrValue="_id"
-            :changeHandler="updateField"
-            name="sport"
-            type="text"
-            :placeholder="$t('inputs.sport')"
-          />
+          <SeachSport :handleChange="setSport" />
           <v-input
             id="name"
             :value="name"
@@ -44,6 +33,7 @@
             v-on:placechanged="getAddressData"
           >
           </vuetify-google-autocomplete>      
+          <UserManager />
       <button class="cta cta-login" type="submit">{{ $t('buttons.create_annonce') }}</button>
     </form>
   </aside>
@@ -54,12 +44,14 @@
 import vInput from '~/components/Input.vue'
 import vSelect from '~/components/Select.vue'
 import DateTimePicker from '~/components/DateTimePicker.vue'
+import SeachSport from '~/components/SeachSport.vue'
+import UserManager from '~/components/UserManager.vue'
 import { createAnnonce } from '~/queries/annonces.gql'
 
 export default {
   // middleware: 'auth',
   components: {
-    vInput, vSelect, DateTimePicker
+    vInput, vSelect, DateTimePicker, UserManager, SeachSport
   },
   data: () => ({
     date: null,
@@ -88,6 +80,9 @@ export default {
     }
   },
   methods: {
+    setSport (value) {
+      this.updateField('sport', value)
+    },
     getAddressData: function (data) {
       if (data) {
         const address = {
